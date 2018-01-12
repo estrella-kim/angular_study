@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="todo" ng-controller="todoCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>tutorial9</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
+    <script src="todoCtrl.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrap">
+        <!-- 입력블록 -->
+        <div class="input-form">
+            <input type="text" ng-model="newList"/>
+            <button type="button" ng-click="createList()">등록</button>
+        </div>
+        <!--// 입력블록 -->
+        <!-- 필터블록 -->
+        <div class="filter-wrap" >
+            filter :
+            <label ng-repeat="(key, value) in checkLists">
+                <input type="radio" name="filter" ng-click="filterLists(key)" /> {{ key }}
+            </label>
+        </div>
+        <!--// 필터블록 -->
+
+        <!-- 리스트블록 -->
+        <ul >
+            <li class="todo"  ng-repeat ="(key, value) in lists">
+                <span >{{ value }}</span>
+                <input type="checkbox" class="list-check" ng-click="moveCard($index)"/>
+                <i class="fa fa-circle"></i>
+                <button type="button" ng-if="listsTitle == 'done'" ng-click="deleteList($index)">삭제</button>
+            </li>
+        </ul>
+        <!--// 리스트블록 -->
+    </div>
+</body>
+</html>
