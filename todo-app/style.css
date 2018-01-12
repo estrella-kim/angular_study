@@ -6,3 +6,23 @@ ul, li{
     width: 1.5em;
     height: 1.5em;
 }
+.checkbox-form{
+    display: inline-block;
+    width: 2em;
+    height:2em;
+    position: relative;
+    text-align:center;
+    background-color:#fff;
+    border-radius: 50%;
+    border: solid 1px #333;
+}
+.checkbox-form input{
+    position: relative;
+    z-index:-1;
+}
+.checkbox-form .fa-check{
+    position : absolute;
+    top:0;
+    left: 0;
+    font-size: 1.4em;
+}

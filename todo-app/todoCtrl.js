@@ -7,7 +7,7 @@ angular.module('todo', [])
         done : [ ]
     };
 
-    //입력 리스트
+
     $scope.newList = '';
     $scope.listsTitle = '';
     $scope.lists = $scope.checkLists['all'];
@@ -16,6 +16,7 @@ angular.module('todo', [])
     $scope.filterLists = function (standard) {
         $scope.lists = $scope.checkLists[standard];
         $scope.listsTitle = standard;
+
     }
 
     //등록

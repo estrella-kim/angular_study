@@ -5,6 +5,7 @@
     <title>tutorial9</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
     <script src="todoCtrl.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -27,9 +28,13 @@
         <!-- 리스트블록 -->
         <ul >
             <li class="todo"  ng-repeat ="(key, value) in lists">
-                <span >{{ value }}</span>
-                <input type="checkbox" class="list-check" ng-click="moveCard($index)"/>
-                <i class="fa fa-circle"></i>
+                <span>{{ value }}</span>
+                <label >
+                    <div class="checkbox-form">
+                        <i ng-if="listsTitle == 'done' || key.checked" class="fa fa-check" aria-hidden="true"}></i>
+                        <input type="checkbox" class="list-check" ng-click="moveCard($index)" ng-model="key.checked"/>
+                    </div>
+                </label>
                 <button type="button" ng-if="listsTitle == 'done'" ng-click="deleteList($index)">삭제</button>
             </li>
         </ul>
