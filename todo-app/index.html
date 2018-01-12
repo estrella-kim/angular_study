@@ -12,8 +12,8 @@
     <div class="wrap">
         <!-- 입력블록 -->
         <div class="input-form">
-            <input type="text" ng-model="newList"/>
-            <button type="button" ng-click="createList()">등록</button>
+            <input type="text" ng-model="newList" ng-enter="createList()"/>
+            <button type="button" ng-click="createList()" >등록</button>
         </div>
         <!--// 입력블록 -->
         <!-- 필터블록 -->
@@ -27,16 +27,42 @@
 
         <!-- 리스트블록 -->
         <ul >
-            <li class="todo"  ng-repeat ="(key, value) in lists">
+            <!-- all lists -->
+            <li class="all-lists" ng-repeat = "(key, value) in checkLists.all">
+                <span>{{ value }}</span>
+                <label>
+                    <div class="checkbox-form">
+                        <i class="fa fa-check" aria-hidden="true"}></i>
+                        <input type="checkbox" class="list-check" ng-click="moveCard($index)" />
+                    </div>
+                </label>
+                <button type="button"  ng-click="deleteList($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </li>
+            <!--// all lists -->
+            <!-- todo list -->
+            <li ng-if="listsTitle == 'active'" class="todo"  ng-repeat ="(key, value) in checkLists.active">
                 <span>{{ value }}</span>
                 <label >
                     <div class="checkbox-form">
-                        <i ng-if="listsTitle == 'done' || key.checked" class="fa fa-check" aria-hidden="true"}></i>
-                        <input type="checkbox" class="list-check" ng-click="moveCard($index)" ng-model="key.checked"/>
+                        <i  class="fa fa-check" aria-hidden="true"}></i>
+                        <input type="checkbox" class="list-check" ng-click="moveCard($index)"/>
                     </div>
                 </label>
-                <button type="button" ng-if="listsTitle == 'done'" ng-click="deleteList($index)">삭제</button>
+                <button type="button" ng-click="deleteList($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
             </li>
+            <!--// todo list -->
+            <!-- done list -->
+            <li ng-if="listsTitle == 'done'"  class="done"  ng-repeat ="(key, value) in checkLists.done">
+                <span>{{ value }}</span>
+                <label >
+                    <div class="checkbox-form">
+                        <i  class="fa fa-check" aria-hidden="true"}></i>
+                        <input type="checkbox" class="list-check" ng-click="moveCard($index)"/>
+                    </div>
+                </label>
+                <button type="button" ng-click="deleteList($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </li>
+            <!--// done list -->
         </ul>
         <!--// 리스트블록 -->
     </div>
